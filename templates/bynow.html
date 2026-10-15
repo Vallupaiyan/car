@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bynow.css' %}">
+</head>
+
+<body>
+
+    <div class="car-page">
+
+        <div class="car-image">
+            <img id="carImg" src="" alt="Car">
+        </div>
+
+        <div class="car-details">
+
+            <div class="brand" id="carBrand"></div>
+
+            <h1 id="carName"></h1>
+
+            <p class="description" id="carDesc"></p>
+
+            <div class="specs">
+                <div class="spec"><span>HORSEPOWER</span><strong id="carHp"></strong></div>
+                <div class="spec"><span>TOP SPEED</span><strong id="carSpeed"></strong></div>
+                <div class="spec"><span>0–60 MPH</span><strong id="carAccel"></strong></div>
+                <div class="spec"><span>WEIGHT</span><strong id="carWeight"></strong></div>
+            </div>
+
+            <div class="colors">
+                <h3>SELECTED COLOR</h3>
+                <span class="color" id="carColor"></span>
+                <span id="carColorName"></span>
+            </div>
+
+            <div class="bottom">
+                <div class="price" id="carPrice"></div>
+
+                <a id="checkoutLink" href="{% url 'checkout' %}">
+                    <button class="buy-now">BUY NOW</button>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+<script>
+const q = new URLSearchParams(location.search);
+const set = (id, v) => document.getElementById(id).textContent = v || '';
+set('carBrand', (q.get('brand') || '').toUpperCase());
+set('carName', (q.get('name') || '').toUpperCase());
+set('carDesc', q.get('desc'));
+set('carHp', q.get('hp'));
+set('carSpeed', q.get('speed'));
+set('carAccel', q.get('accel'));
+set('carWeight', q.get('weight'));
+set('carPrice', q.get('price'));
+set('carColorName', q.get('color'));
+const dot = document.getElementById('carColor');
+dot.style.background = q.get('hex') || '#000';
+dot.style.display = 'inline-block';
+dot.style.width = dot.style.height = '28px';
+dot.style.borderRadius = '50%';
+document.getElementById('carImg').src = q.get('img') || '';
+// carry the same car details on to checkout
+document.getElementById('checkoutLink').href += location.search;
+</script>
+
+</body>
+</html>

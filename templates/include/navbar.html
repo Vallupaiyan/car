@@ -1,0 +1,180 @@
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<nav class="navbar">
+
+    <!-- Logo -->
+    <div class="logo">
+        <a href="{% url 'index' %}">
+            <h2>DEALARO</h2>
+        </a>
+    </div>
+
+
+    <!-- Navbar Menu -->
+    <div class="nav-menu" id="navMenu">
+
+        <ul class="nav-links">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'collection' %}">Collection</a></li>
+            <li><a href="{% url 'service' %}">Services</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+
+
+        <!-- Right Side -->
+        <div class="nav-actions">
+
+            <!-- SEARCH -->
+            <div class="search-container">
+                <button type="button" class="search-btn" id="searchBtn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <input type="text" id="searchInput" class="search-input"
+                       placeholder="Search cars...">
+            </div>
+
+            <!-- WISHLIST -->
+            <button type="button" class="wishlist-btn" id="wishlistBtn" title="Wishlist">
+                <i class="fa-regular fa-heart"></i>
+                <span class="wishlist-count" id="wishlistCount"></span>
+            </button>
+
+            <!-- LOGIN -->
+                        <!-- LOGIN / LOGOUT -->
+            {% if request.session.customer_name %}
+                <span class="nav-user"><i class="fa-solid fa-user"></i> {{ request.session.customer_name }}</span>
+                <a href="{% url 'logout' %}" class="login-btn">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="login-btn">
+                    <i class="fa-solid fa-user"></i>
+                    Login
+                </a>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- Mobile Menu -->
+    <div class="menu-toggle" id="menuToggle">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+</nav>
+
+
+<script>
+/* =========================
+   WISHLIST STORE (shared by every page, saved in the browser)
+========================= */
+window.Wishlist = {
+    KEY: "dealaro_wishlist",
+
+    ids: function () {
+        try { return JSON.parse(localStorage.getItem(this.KEY)) || []; }
+        catch (e) { return []; }
+    },
+
+    has: function (id) { return this.ids().indexOf(id) !== -1; },
+
+    toggle: function (id) {
+        var list = this.ids();
+        var i = list.indexOf(id);
+        if (i === -1) { list.push(id); } else { list.splice(i, 1); }
+        try { localStorage.setItem(this.KEY, JSON.stringify(list)); } catch (e) {}
+        this.refresh();
+        return i === -1;               // true = now liked
+    },
+
+    refresh: function () {
+        var btn = document.getElementById("wishlistBtn");
+        var badge = document.getElementById("wishlistCount");
+        if (!btn) return;
+        var n = this.ids().length;
+        var icon = btn.querySelector("i");
+        icon.classList.toggle("fa-solid", n > 0);
+        icon.classList.toggle("fa-regular", n === 0);
+        btn.classList.toggle("liked", n > 0);
+        badge.textContent = n > 0 ? n : "";
+    }
+};
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* MOBILE MENU */
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.getElementById("navMenu");
+
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener("click", function () {
+            navMenu.classList.toggle("mobile-open");
+            const icon = menuToggle.querySelector("i");
+            const open = navMenu.classList.contains("mobile-open");
+            icon.classList.toggle("fa-xmark", open);
+            icon.classList.toggle("fa-bars", !open);
+        });
+    }
+
+
+    /* SEARCH
+       - Collection page: filters cars live while typing (window.onNavbarSearch)
+       - Other pages: Enter opens Collection with ?search=... */
+    const searchBtn = document.getElementById("searchBtn");
+    const searchInput = document.getElementById("searchInput");
+    const collectionUrl = "{% url 'collection' %}";
+
+    if (searchBtn && searchInput) {
+
+        searchBtn.addEventListener("click", function () {
+            searchInput.classList.toggle("active");
+            if (searchInput.classList.contains("active")) {
+                searchInput.focus();
+            } else {
+                searchInput.value = "";
+                if (window.onNavbarSearch) window.onNavbarSearch("");
+            }
+        });
+
+        searchInput.addEventListener("input", function () {
+            if (window.onNavbarSearch) window.onNavbarSearch(searchInput.value);
+        });
+
+        searchInput.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                const value = searchInput.value.trim();
+                if (window.onNavbarSearch) {
+                    window.onNavbarSearch(value);
+                } else if (value !== "") {
+                    window.location.href = collectionUrl + "?search=" + encodeURIComponent(value);
+                }
+            }
+            if (event.key === "Escape") {
+                searchInput.value = "";
+                if (window.onNavbarSearch) window.onNavbarSearch("");
+            }
+        });
+    }
+
+
+    /* WISHLIST BUTTON
+       - Collection page: show only liked cars (window.onWishlistClick)
+       - Other pages: open Collection with ?wishlist=1 */
+    const wishlistBtn = document.getElementById("wishlistBtn");
+
+    if (wishlistBtn) {
+        window.Wishlist.refresh();
+        wishlistBtn.addEventListener("click", function () {
+            if (window.onWishlistClick) {
+                window.onWishlistClick();
+            } else {
+                window.location.href = collectionUrl + "?wishlist=1";
+            }
+        });
+    }
+
+});
+</script>

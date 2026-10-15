@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% load static %}
+    <title>DEALARO - Premium Luxury Cars | Your Journey Starts Here</title>
+    <meta name="description" content="Dealaro - Your trusted destination for premium and luxury vehicles. Explore our collection of BMW, Audi, Mercedes, Lamborghini, Ferrari, and more.">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+
+    
+
+
+
+</head>
+
+<body>
+    {% include 'include/navbar.html' %}
+
+      <div id="globalFormContainer"></div>
+
+    <div class="right-info">
+        <a href="#"><i class="fa-solid fa-truck-fast"></i> Track Your Order</a>
+        <a href="#"><i class="fa-solid fa-user"></i> Login / Sign Up</a>
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+    </div>
+</div>
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <span class="sub-title">SUPERIOR HORSE</span>
+        <h1>
+            Your Journey <br>
+            Starts Here <br>
+            With <span>Quality</span>
+        </h1>
+        <p class="hero-description">
+            Discover the world's finest automobiles at unbeatable prices. 
+            Premium luxury, sports, and family vehicles curated for discerning drivers.
+        </p>
+        <div class="hero-buttons">
+          <a href="{% url 'collection' %}" class="btn">
+                <i class="fa-solid fa-car"></i> EXPLORE CARS
+            </a>
+            <a href="{%url 'about'%}" class="btn btn-outline">
+                <i class="fa-solid fa-play"></i> LEARN MORE
+            </a>
+        </div>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <h3>500+</h3>
+                <p>Cars Sold</p>
+            </div>
+            <div class="hero-stat">
+                <h3>98%</h3>
+                <p>Happy Clients</p>
+            </div>
+            <div class="hero-stat">
+                <h3>15+</h3>
+                <p>Years Experience</p>
+            </div>
+        </div>
+    </div>
+    <div class="hero-image">
+        <img src="{%static 'asstes/car2.jpg' %}" alt="Luxury Car">
+    </div>
+</section>
+<!-- Video Section -->
+<section class="about-video">
+    <video autoplay muted loop controls>
+        <source src="{% static 'asstes/cardrft.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</section>
+
+<!-- About Section -->
+<section class="about">
+    <div class="about-image animate-on-scroll">
+        <img src="{%static 'asstes/car2.jpg' %}" alt="Luxury Car">
+    </div>
+    <div class="about-content animate-on-scroll">
+        <span>ABOUT US</span>
+        <h2>Driving Excellence In Every Journey</h2>
+        <p>
+            Welcome to Dealaro, your trusted destination for premium and luxury
+            vehicles. We are passionate about delivering exceptional cars that
+            combine performance, comfort, and innovation.
+        </p>
+        <p>
+            Whether you're looking for a stylish sports car, a family SUV,
+            or a luxury sedan, our collection is carefully selected to meet
+            the highest standards of quality and reliability.
+        </p>
+        <div class="about-features">
+            <div class="feature">
+                <i class="fa-solid fa-check-circle"></i> Premium Vehicles
+            </div>
+            <div class="feature">
+                <i class="fa-solid fa-check-circle"></i> Trusted Dealership
+            </div>
+            <div class="feature">
+                <i class="fa-solid fa-check-circle"></i> Affordable Pricing
+            </div>
+            <div class="feature">
+                <i class="fa-solid fa-check-circle"></i> Customer Satisfaction
+            </div>
+        </div>
+        <a href="{%url 'collection' %}" class="about-btn">
+            <i class="fa-solid fa-arrow-right"></i> Explore Cars
+        </a>
+    </div>
+</section>
+
+<!-- Collection Section -->
+<section class="collection">
+    <div class="section-title animate-on-scroll">
+        <h2>Our Car Collection</h2>
+        <p>Choose Your Dream Car</p>
+    </div>
+    <div class="car-container">
+        <div class="car-card animate-on-scroll">
+            <span class="car-badge">Hot</span>
+            <button class="car-wishlist"><i class="fa-regular fa-heart"></i></button>
+            <img src="{%static 'asstes/car2.jpg' %}" alt="BMW M4">
+            <div class="car-info">
+                <h3>BMW M4</h3>
+                <div class="car-specs">
+                    <span><i class="fa-solid fa-gauge-high"></i> 473 HP</span>
+                    <span><i class="fa-solid fa-gas-pump"></i> Petrol</span>
+                    <span><i class="fa-solid fa-calendar"></i> 2024</span>
+                </div>
+                <p class="price">$75,000 <span>/ Starting</span></p>
+                <a href="{%url 'collection' %}"><i class="fa-solid fa-eye"></i> View Details</a>
+            </div>
+        </div>
+        <div class="car-card animate-on-scroll">
+            <span class="car-badge">New</span>
+            <button class="car-wishlist"><i class="fa-regular fa-heart"></i></button>
+            <img src="{%static 'asstes/car4.jpg' %}" alt="Audi R8">
+            <div class="car-info">
+                <h3>Audi R8</h3>
+                <div class="car-specs">
+                    <span><i class="fa-solid fa-gauge-high"></i> 562 HP</span>
+                    <span><i class="fa-solid fa-gas-pump"></i> Petrol</span>
+                    <span><i class="fa-solid fa-calendar"></i> 2024</span>
+                </div>
+                <p class="price">$120,000 <span>/ Starting</span></p>
+                <a href="{%url 'collection' %}"><i class="fa-solid fa-eye"></i> View Details</a>
+            </div>
+        </div>
+        <div class="car-card animate-on-scroll">
+            <button class="car-wishlist"><i class="fa-regular fa-heart"></i></button>
+            <img src="{%static 'asstes/car14.jpg' %}" alt="Mercedes AMG GT">
+            <div class="car-info">
+                <h3>Mercedes AMG GT</h3>
+                <div class="car-specs">
+                    <span><i class="fa-solid fa-gauge-high"></i> 523 HP</span>
+                    <span><i class="fa-solid fa-gas-pump"></i> Petrol</span>
+                    <span><i class="fa-solid fa-calendar"></i> 2024</span>
+                </div>
+                <p class="price">$110,000 <span>/ Starting</span></p>
+                <a href="{%url 'collection' %}"><i class="fa-solid fa-eye"></i> View Details</a>
+            </div>
+        </div>
+        <div class="car-card animate-on-scroll">
+            <span class="car-badge">Featured</span>
+            <button class="car-wishlist"><i class="fa-regular fa-heart"></i></button>
+            <img src="{%static 'asstes/car15.jpg' %}" alt="Lamborghini Huracan">
+            <div class="car-info">
+                <h3>Lamborghini Huracan</h3>
+                <div class="car-specs">
+                    <span><i class="fa-solid fa-gauge-high"></i> 631 HP</span>
+                    <span><i class="fa-solid fa-gas-pump"></i> Petrol</span>
+                    <span><i class="fa-solid fa-calendar"></i> 2024</span>
+                </div>
+                <p class="price">$250,000 <span>/ Starting</span></p>
+                <a href="{%url 'collection' %}"><i class="fa-solid fa-eye"></i> View Details</a>
+            </div>
+        </div>
+        <div class="car-card animate-on-scroll">
+            <button class="car-wishlist"><i class="fa-regular fa-heart"></i></button>
+            <img src="{%static 'asstes/car6.jpg' %}" alt="Ferrari 488">
+            <div class="car-info">
+                <h3>Ferrari 488</h3>
+                <div class="car-specs">
+                    <span><i class="fa-solid fa-gauge-high"></i> 661 HP</span>
+                    <span><i class="fa-solid fa-gas-pump"></i> Petrol</span>
+                    <span><i class="fa-solid fa-calendar"></i> 2024</span>
+                </div>
+                <p class="price">$280,000 <span>/ Starting</span></p>
+                <a href="{%url 'collection' %}"><i class="fa-solid fa-eye"></i> View Details</a>
+            </div>
+        </div>
+        <div class="car-card animate-on-scroll">
+            <span class="car-badge">Popular</span>
+            <button class="car-wishlist"><i class="fa-regular fa-heart"></i></button>
+            <img src="{%static 'asstes/car11.jpg' %}" alt="Porsche 911">
+            <div class="car-info">
+                <h3>Porsche 911</h3>
+                <div class="car-specs">
+                    <span><i class="fa-solid fa-gauge-high"></i> 443 HP</span>
+                    <span><i class="fa-solid fa-gas-pump"></i> Petrol</span>
+                    <span><i class="fa-solid fa-calendar"></i> 2024</span>
+                </div>
+                <p class="price">$140,000 <span>/ Starting</span></p>
+                <a href="{%url 'collection' %}"><i class="fa-solid fa-eye"></i> View Details</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services-section" id="services">
+    <div class="service-title animate-on-scroll">
+        <h1>Our Services</h1>
+        <p>Premium Car Dealer Solutions For Every Customer</p>
+    </div>
+    <div class="services-container">
+        <div class="service-card animate-on-scroll">
+            <div class="icon-wrapper">
+                <i class="fa-solid fa-car"></i>
+            </div>
+            <h2>Car Sales</h2>
+            <p>Luxury, sports and premium vehicles at the best prices. Handpicked collection for every taste.</p>
+            <a href="{% url 'collection' %}" class="service-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card animate-on-scroll">
+            <div class="icon-wrapper">
+                <i class="fa-solid fa-money-check-dollar"></i>
+            </div>
+            <h2>Financing</h2>
+            <p>Flexible loan and EMI options for easy ownership. Competitive rates tailored for you.</p>
+            <a href="{%url 'service' %}" class="service-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card animate-on-scroll">
+            <div class="icon-wrapper">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+            </div>
+            <h2>Maintenance</h2>
+            <p>Professional servicing and vehicle maintenance support by certified technicians.</p>
+            <a href="{%url 'service' %}" class="service-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card animate-on-scroll">
+            <div class="icon-wrapper">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h2>Insurance</h2>
+            <p>Complete insurance assistance for your vehicle. Comprehensive coverage plans.</p>
+            <a href="{%url 'service' %}" class="service-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card animate-on-scroll">
+            <div class="icon-wrapper">
+                <i class="fa-solid fa-key"></i>
+            </div>
+            <h2>Car Rental</h2>
+            <p>Premium cars available for daily and monthly rental. Drive luxury on your terms.</p>
+            <a href="{%url 'service' %}" class="service-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card animate-on-scroll">
+            <div class="icon-wrapper">
+                <i class="fa-solid fa-headset"></i>
+            </div>
+            <h2>24/7 Support</h2>
+            <p>Dedicated customer support whenever you need help. We're always here for you.</p>
+            <a href="{%url 'service' %}" class="service-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials">
+    <div class="section-title animate-on-scroll">
+        <h2>What Our Customers Say</h2>
+        <p>Real Stories from Real Customers</p>
+    </div>
+    <div class="testimonials-container">
+        <div class="testimonial-card animate-on-scroll">
+            <div class="stars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </div>
+            <p>"By far the best car buying experience I have had. The team was very friendly and transparent. The entire process was smooth and professional from beginning to end. Highly recommend!"</p>
+            <div class="testimonial-author">
+                <img src="https://ui-avatars.com/api/?name=Monica+Aranda&background=ffc107&color=000" alt="Monica Aranda">
+                <div>
+                    <h4>Monica Aranda</h4>
+                    <span>BMW M4 Owner</span>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card animate-on-scroll">
+            <div class="stars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </div>
+            <p>"The dealership has a classy, professional atmosphere. The service was smooth and stress-free, and we felt confident in every step of the process. Best buying experience by far!"</p>
+            <div class="testimonial-author">
+                <img src="https://ui-avatars.com/api/?name=Amber+T&background=ffc107&color=000" alt="Amber T">
+                <div>
+                    <h4>Amber T</h4>
+                    <span>Cadillac Escalade Owner</span>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card animate-on-scroll">
+            <div class="stars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </div>
+            <p>"Very trustworthy dealership. Low pressure sales environment and the most honest and transparent pricing I've seen. My wife and I are so happy with the Porsche Cayenne we purchased!"</p>
+            <div class="testimonial-author">
+                <img src="https://ui-avatars.com/api/?name=Eric+Przybysz&background=ffc107&color=000" alt="Eric Przybysz">
+                <div>
+                    <h4>Eric Przybysz</h4>
+                    <span>Porsche Cayenne Owner</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <h2>Ready to Find Your Dream Car?</h2>
+    <p>Browse our exclusive collection of premium vehicles and schedule a test drive today. Your perfect car is waiting.</p>
+    <a href="{%url 'collection' %}" class="btn">
+        <i class="fa-solid fa-calendar-check"></i> BOOK A TEST DRIVE
+    </a>
+</section>
+{%include 'include/footer.html' %}
+
+
+<script>
+
+// Scroll Animation Observer
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.animate-on-scroll').forEach(el => {
+    observer.observe(el);
+});
+
+// Wishlist toggle
+document.querySelectorAll('.car-wishlist').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const icon = this.querySelector('i');
+        if (icon.classList.contains('fa-regular')) {
+            icon.classList.remove('fa-regular');
+            icon.classList.add('fa-solid');
+            icon.style.color = '#ff4757';
+        } else {
+            icon.classList.remove('fa-solid');
+            icon.classList.add('fa-regular');
+            icon.style.color = '#fff';
+        }
+    });
+});
+
+</script>
+  <script src="form-modal.js"></script>
+</body>
+</html>

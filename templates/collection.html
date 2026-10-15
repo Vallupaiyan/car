@@ -1,0 +1,2110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prestige Motors | Premium Automotive Concierge</title>
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  </head>
+<style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary: #d4af37;
+      --primary-dark: #b8941d;
+      --secondary: #0a0a0f;
+      --tertiary: #1a1a2e;
+      --accent: #00d4ff;
+      --success: #00c896;
+      --danger: #ff6b5b;
+      --card-bg: #0f0f1a;
+      --card-bg-light: #16172b;
+      --border: #2a2a42;
+      --text-primary: #ffffff;
+      --text-secondary: #b0b0c0;
+      --text-tertiary: #7a7a8e;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+  font-family: 'Outfit', sans-serif;
+  background: linear-gradient(135deg, #0a0a0f 0%, #0f0f1a 100%);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.10), transparent 25%),
+    radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.08), transparent 22%),
+    radial-gradient(circle at 50% 80%, rgba(255, 107, 91, 0.06), transparent 24%);
+  pointer-events: none;
+  z-index: 0;
+  animation: driftBackground 18s ease-in-out infinite alternate;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.03) 45%, transparent 55%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+  animation: driftSheen 14s linear infinite;
+}
+.background-particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.background-particles span {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.35);
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.35);
+  animation: driftParticle linear infinite;
+}
+
+@keyframes driftParticle {
+  from {
+    transform: translateY(110vh) translateX(0);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  to {
+    transform: translateY(-20vh) translateX(80px);
+    opacity: 0;
+  }
+}
+
+@keyframes driftBackground {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0px);
+  }
+  50% {
+    transform: translate3d(-20px, 18px, 0) scale(1.04);
+    filter: blur(1px);
+  }
+  100% {
+    transform: translate3d(18px, -14px, 0) scale(1.02);
+    filter: blur(0px);
+  }
+}
+
+@keyframes driftSheen {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(120%);
+  }
+}
+
+    /* ── ANIMATIONS ── */
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-40px) rotateX(20deg);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(-40px) translateX(30px); }
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { 
+        box-shadow: 0 12px 32px rgba(212, 175, 55, 0.2);
+        transform: scale(1);
+      }
+      50% { 
+        box-shadow: 0 12px 48px rgba(212, 175, 55, 0.4);
+        transform: scale(1.01);
+      }
+    }
+
+    @keyframes gridFade {
+      from { 
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInCard {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes buttonBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    @keyframes filterPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes borderGlow {
+      0% { 
+        border-color: var(--border);
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+      }
+      100% { 
+        border-color: var(--primary);
+        box-shadow: 0 0 20px 10px rgba(212, 175, 55, 0);
+      }
+    }
+
+    @keyframes modalSlide {
+      from {
+        transform: translateY(60px) scale(0.9);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes backdropFade {
+      from { 
+        opacity: 0; 
+        backdrop-filter: blur(0px);
+      }
+      to { 
+        opacity: 1; 
+        backdrop-filter: blur(12px);
+      }
+    }
+
+    @keyframes textReveal {
+      0% {
+        opacity: 0;
+        transform: translateY(20px) skewY(5deg);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) skewY(0deg);
+      }
+    }
+
+    @keyframes colorDotPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    @keyframes specItemSlide {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes priceHiglight {
+      0%, 100% { color: #d4af37; }
+      50% { color: #e5c158; }
+    }
+
+    @keyframes statCardBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 120px 50px 80px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(0, 212, 255, 0.04) 100%);
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -15%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: float 25s ease-in-out infinite;
+    }
+
+    .hero h1 {
+      font-size: 4.2rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+      font-family: 'Cinzel', serif;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #d4af37 0%, #e5c158 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: slideDown 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+    }
+
+    .hero h1::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #d4af37, transparent);
+      animation: slideDown 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+    }
+
+    .hero p {
+      color: var(--text-secondary);
+      margin-top: 24px;
+      font-size: 1.15rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+      font-weight: 300;
+      letter-spacing: 0.4px;
+      animation: textReveal 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+    }
+
+    /* ── FILTERS ── */
+    .filters {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 16px;
+      padding: 40px 50px;
+      flex-wrap: wrap;
+      background: rgba(16, 16, 28, 0.4);
+      border-bottom: 1px solid var(--border);
+      animation: fadeIn 0.8s ease-out 0.5s both;
+    }
+
+    .filter-btn {
+      padding: 12px 32px;
+      border-radius: 50px;
+      border: 1.5px solid var(--border);
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      text-transform: capitalize;
+      letter-spacing: 0.3px;
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 0.6s ease-out 0.5s both;
+    }
+
+    .filter-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      animation: shimmer 3s infinite;
+    }
+
+    /* .filter-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: rgba(212, 175, 55, 0.1);
+      transform: translateY(-3px);
+      animation: filterPulse 0.6s ease-out;
+    } */
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--primary), rgba(212, 175, 55, 0.8));
+      border-color: var(--primary);
+      color: #000;
+      font-weight: 700;
+      box-shadow: 0 12px 32px rgba(212, 175, 55, 0.2);
+      transform: translateY(-3px);
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+
+    /* ── CARD GRID ── */
+    .collection {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 32px;
+      padding: 60px 50px;
+      max-width: 1800px;
+      margin: 0 auto;
+      animation: gridFade 0.6s ease-out;
+    }
+
+    /* ── CAR CARD ── */
+    .car-card {
+      background: linear-gradient(135deg, var(--card-bg-light) 0%, var(--card-bg) 100%);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      animation: slideInCard 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+    }
+/* 
+    .car-card:nth-child(1) { animation-delay: 0.1s; }
+    .car-card:nth-child(2) { animation-delay: 0.2s; }
+    .car-card:nth-child(3) { animation-delay: 0.3s; }
+    .car-card:nth-child(4) { animation-delay: 0.4s; }
+    .car-card:nth-child(5) { animation-delay: 0.5s; }
+    .car-card:nth-child(6) { animation-delay: 0.6s; } */
+
+    .car-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* .car-card:hover {
+      transform: translateY(-16px) scale(1.02);
+      border-color: var(--primary);
+      box-shadow: 0 32px 80px rgba(212, 175, 55, 0.2);
+      animation: borderGlow 0.6s ease-out forwards;
+    }
+
+    .car-card:hover::before {
+      opacity: 1;
+    } */
+
+    .card-image {
+      width: 100%;
+      height: 260px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #0f1829 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+    }
+/* 
+    .car-card:hover .card-image img {
+      transform: scale(1.15) rotate(2deg);
+    } */
+
+    .card-badge {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      background: linear-gradient(135deg, var(--primary), rgba(212, 175, 55, 0.8));
+      color: #000;
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 7px 16px;
+      border-radius: 50px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+      z-index: 2;
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.25);
+      animation: fadeIn 0.6s ease-out 0.4s both;
+    }
+
+    .card-badge.new {
+      background: linear-gradient(135deg, var(--success), rgba(0, 200, 150, 0.8));
+      color: #fff;
+      animation: fadeIn 0.6s ease-out 0.4s both, pulseGlow 2s ease-in-out infinite 0.6s;
+    }
+
+    .card-badge.hot {
+      background: linear-gradient(135deg, var(--danger), rgba(255, 107, 91, 0.8));
+      color: #fff;
+      animation: fadeIn 0.6s ease-out 0.4s both, pulseGlow 2s ease-in-out infinite 0.6s;
+    }
+
+    .card-body {
+      padding: 32px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-brand {
+      font-size: 0.75rem;
+      color: var(--primary);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      font-family: 'Cinzel', serif;
+      animation: fadeIn 0.6s ease-out 0.2s both;
+    }
+
+    .card-name {
+      font-size: 1.55rem;
+      font-weight: 800;
+      margin: 4px 0 12px;
+      font-family: 'Cinzel', serif;
+      letter-spacing: -0.5px;
+      animation: fadeIn 0.6s ease-out 0.25s both;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-weight: 300;
+      animation: fadeIn 0.6s ease-out 0.3s both;
+    }
+
+    .card-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin: 20px 0;
+      padding: 18px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      animation: fadeIn 0.6s ease-out 0.35s both;
+    }
+
+    .spec {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      text-align: center;
+      animation: fadeIn 0.6s ease-out backwards;
+    }
+
+    .spec:nth-child(1) { animation-delay: 0.4s; }
+    .spec:nth-child(2) { animation-delay: 0.45s; }
+    .spec:nth-child(3) { animation-delay: 0.5s; }
+
+    .spec-label {
+      font-size: 0.65rem;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-weight: 700;
+    }
+
+    .spec-value {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--primary);
+      font-family: 'IBM Plex Mono', monospace;
+      transition: all 0.3s ease;
+    }
+
+    /* .card-specs:hover .spec-value {
+      color: #e5c158;
+      transform: scale(1.1);
+    } */
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 20px;
+      gap: 14px;
+      animation: fadeIn 0.6s ease-out 0.4s both;
+    }
+
+    .card-price {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--primary);
+      font-family: 'IBM Plex Mono', monospace;
+      animation: priceHiglight 2s ease-in-out infinite;
+    }
+
+    .btn-detail {
+      padding: 12px 28px;
+      background: linear-gradient(135deg, var(--primary), rgba(212, 175, 55, 0.8));
+      color: #000;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      flex: 1;
+      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 0.6s ease-out 0.45s both;
+    }
+
+    .btn-detail::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+/* 
+    .btn-detail:hover::after {
+      width: 300px;
+      height: 300px;
+    } */
+/* 
+    .btn-detail:hover {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.95), var(--primary));
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(212, 175, 55, 0.35);
+      animation: buttonBounce 0.6s ease-out;
+    } */
+
+    /* ── FULL-SIZE IMAGE VIEWER ── */
+    .viewer-fullsize {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0d0d1a, #1a1a2e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .viewer-fullsize img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    /* ── MODAL OVERLAY ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.96);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: backdropFade 0.4s ease-out;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    /* ── MODAL DETAIL ── */
+    .modal {
+      background: linear-gradient(135deg, var(--card-bg-light) 0%, var(--card-bg) 100%);
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      width: 1300px;
+      height: 90vh;
+    
+      overflow-y: hidden;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      position: relative;
+      animation: modalSlide 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 80px 160px rgba(0, 0, 0, 0.7);
+    }
+
+    @media(max-width: 900px) {
+      .modal {
+        grid-template-columns: 1fr;
+        max-height: 95vh;
+      }
+    }
+
+    .modal-image-panel {
+      background: linear-gradient(135deg, #0d0d1a, #1a1a2e);
+      border-radius: 32px 0 0 32px;
+      min-height: 480px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      animation: slideInCard 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s backwards;
+    }
+
+    @media(max-width: 900px) {
+      .modal-image-panel {
+        border-radius: 32px 32px 0 0;
+        min-height: 340px;
+      }
+    }
+
+    .modal-info {
+      padding: 30px ;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: auto;
+      animation: slideInCard 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s backwards;
+    }
+
+    .modal-brand {
+      font-size: 0.8rem;
+      color: var(--primary);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      font-family: 'Cinzel', serif;
+      animation: fadeIn 0.6s ease-out 0.3s both;
+    }
+
+    .modal-name {
+      font-size: 2.8rem;
+      font-weight: 400;
+      margin: 8px 0 20px;
+      font-family: 'Cinzel', serif;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, #d4af37 0%, #e5c158 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: slideDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s both;
+    }
+
+    .modal-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 28px;
+      font-weight: 300;
+      letter-spacing: 0.3px;
+      animation: fadeIn 0.6s ease-out 0.4s both;
+    }
+
+    .modal-specs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 28px 0;
+    }
+
+    .modal-spec-item {
+      background: rgba(212, 175, 55, 0.05);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: specItemSlide 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+    }
+
+    .modal-spec-item:nth-child(1) { animation-delay: 0.45s; }
+    .modal-spec-item:nth-child(2) { animation-delay: 0.5s; }
+    .modal-spec-item:nth-child(3) { animation-delay: 0.55s; }
+    .modal-spec-item:nth-child(4) { animation-delay: 0.6s; }
+
+    /* .modal-spec-item:hover {
+      border-color: var(--primary);
+      background: rgba(212, 175, 55, 0.1);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(212, 175, 55, 0.2);
+    } */
+
+    .modal-spec-label {
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+      font-weight: 800;
+    }
+
+    .modal-spec-value {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--primary);
+      font-family: 'IBM Plex Mono', monospace;
+      transition: all 0.3s ease;
+    }
+
+    .modal-spec-item:hover .modal-spec-value {
+      transform: scale(1.2);
+      color: #e5c158;
+    }
+
+    .modal-price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      gap: 16px;
+      animation: fadeIn 0.6s ease-out 0.65s both;
+    }
+
+    .modal-price {
+      font-size: 2.6rem;
+      font-weight: 900;
+      font-family: 'IBM Plex Mono', monospace;
+      background: linear-gradient(135deg, #d4af37 0%, #e5c158 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: priceHiglight 2s ease-in-out infinite;
+    }
+
+    .btn-buy {
+      padding:25px;
+      background: linear-gradient(135deg, var(--primary), rgba(212, 175, 55, 0.8));
+      color: #000;
+      border: none;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      white-space: nowrap;
+      box-shadow: 0 12px 32px rgba(158, 136, 38, 0.611);
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 0.6s ease-out 0.65s both;
+    }
+
+    /* .btn-buy::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 3s infinite;
+    }
+
+    .btn-buy:hover {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.95), var(--primary));
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 16px 48px rgba(212, 175, 55, 0.4);
+      animation: buttonBounce 0.6s ease-out;
+    } */
+
+    .modal-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1.5px solid var(--border);
+      color: var(--text-secondary);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(12px);
+      animation: fadeIn 0.6s ease-out 0.3s both;
+    }
+/* 
+    .modal-close:hover {
+      background: linear-gradient(135deg, var(--danger), rgba(255, 107, 91, 0.8));
+      border-color: var(--danger);
+      color: #fff;
+      transform: rotate(90deg) scale(1.2);
+      animation: none;
+    } */
+
+    /* COLOR SELECTOR */
+    .color-section {
+      margin-top: 24px;
+      animation: fadeIn 0.6s ease-out 0.5s both;
+    }
+
+    .color-section-title {
+      font-size: 0.75rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 14px;
+      font-weight: 800;
+      font-family: 'Cinzel', serif;
+    }
+
+    .color-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .color-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2.5px solid transparent;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+      position: relative;
+      animation: fadeIn 0.5s ease-out backwards;
+    }
+
+    .color-dot:nth-child(1) { animation-delay: 0.55s; }
+    .color-dot:nth-child(2) { animation-delay: 0.6s; }
+    .color-dot:nth-child(3) { animation-delay: 0.65s; }
+    .color-dot:nth-child(4) { animation-delay: 0.7s; }
+/* 
+    .color-dot:hover {
+      transform: scale(1.3) rotate(15deg);
+      border-color: rgba(255, 255, 255, 0.4);
+      animation: colorDotPulse 0.6s ease-out;
+    } */
+
+    .color-dot.selected {
+      border-color: var(--primary);
+      transform: scale(1.3);
+      box-shadow: 0 0 0 3px var(--card-bg), 0 0 0 5px var(--primary), 0 8px 24px rgba(212, 175, 55, 0.3);
+    }
+
+    .color-dot::after {
+      content: attr(data-name);
+      position: absolute;
+      bottom: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.6rem;
+      color: var(--text-tertiary);
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+
+  /* 
+  
+    /* ── CLIENT DASHBOARD ── */
+    .client-section {
+      display: none;
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    .client-section.active {
+      display: block;
+    }
+
+    .portal-header {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(0, 212, 255, 0.06) 100%);
+      padding: 60px 50px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 60px;
+      animation: slideDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .portal-welcome {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+      letter-spacing: 0.3px;
+      font-weight: 300;
+      animation: fadeIn 0.6s ease-out 0.2s both;
+    }
+
+    .portal-title {
+      font-size: 3rem;
+      font-weight: 900;
+      font-family: 'Cinzel', serif;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #d4af37 0%, #e5c158 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -1px;
+      animation: slideDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+    }
+
+    .portal-desc {
+      color: var(--text-secondary);
+      max-width: 700px;
+      line-height: 1.8;
+      font-size: 1.05rem;
+      font-weight: 300;
+      animation: fadeIn 0.6s ease-out 0.3s both;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      padding: 0 50px 60px;
+      max-width: 1800px;
+      margin: 0 auto;
+    }
+
+    @media(max-width: 1200px) {
+      .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width: 600px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, var(--card-bg-light) 0%, var(--card-bg) 100%);
+      border: 1px solid var(--border);
+      padding: 32px;
+      border-radius: 20px;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      animation: slideInCard 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+    }
+
+    .stat-card:nth-child(1) { animation-delay: 0.2s; }
+    .stat-card:nth-child(2) { animation-delay: 0.3s; }
+    .stat-card:nth-child(3) { animation-delay: 0.4s; }
+    .stat-card:nth-child(4) { animation-delay: 0.5s; }
+    .stat-card:nth-child(5) { animation-delay: 0.6s; }
+    .stat-card:nth-child(6) { animation-delay: 0.7s; }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+
+    .wishlist-btn { position: relative; }
+
+.wishlist-count {
+    position: absolute;
+    top: -2px;
+    right: -4px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: 9px;
+    background: #f5c542;
+    color: #111;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 18px;
+    text-align: center;
+}
+
+.wishlist-count:empty { display: none; }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 14px;
+      font-weight: 800;
+    }
+
+    .stat-value {
+      font-size: 2.8rem;
+      font-weight: 900;
+      font-family: 'IBM Plex Mono', monospace;
+      background: linear-gradient(135deg, #d4af37 0%, #e5c158 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: priceHiglight 2s ease-in-out infinite;
+    }
+
+    .hide {
+      display: none !important;
+    }
+
+   */
+</style>
+<body>
+
+  {%include 'include/navbar.html'%}
+
+<!-- ── CUSTOMER SECTION ── -->
+<div class="customer-section" id="customerSection">
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Prestige Motors</h1>
+    <p>Curated collection of automotive excellence. Click colors to change the car view!</p>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">All Vehicles</button>
+    <button class="filter-btn" data-filter="sports">Sports</button>
+    <button class="filter-btn" data-filter="suv">SUV</button>
+    <button class="filter-btn" data-filter="electric">Electric</button>
+    <button class="filter-btn" data-filter="luxury">Luxury</button>
+  </div>
+
+  <!-- CARD GRID -->
+  <div class="collection" id="collection"></div>
+</div>
+
+<!-- ── CLIENT SECTION ── -->
+<div class="client-section" id="clientSection">
+  <div class="portal-header">
+    <div class="portal-welcome">Welcome back</div>
+    <div class="portal-title">Client Dashboard</div>
+    <div class="portal-desc">Manage your premium inventory, track customer engagement, and monitor sales performance across all vehicles.</div>
+  </div>
+
+  <div class="dashboard-grid">
+    <div class="stat-card">
+      <div class="stat-label">Total Inventory</div>
+      <div class="stat-value">6</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Vehicles Sold</div>
+      <div class="stat-value">24</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Active Inquiries</div>
+      <div class="stat-value">8</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Total Revenue</div>
+      <div class="stat-value">₹19.8Cr</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Avg. Days Listed</div>
+      <div class="stat-value">12</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Customer Rating</div>
+      <div class="stat-value">4.9/5</div>
+    </div>
+  </div>
+
+  <div style="padding: 60px 50px; text-align: center; color: var(--text-secondary);">
+    <p style="font-size: 1.1rem;">Advanced inventory management and analytics tools — coming soon.</p>
+  </div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-image-panel" id="modalImagePanel">
+      <div class="viewer-fullsize" id="viewerFullsize">
+        <img id="viewerFullsizeImg" src="" alt="Car View">
+      </div>
+    </div>
+    <div class="modal-info" id="modalInfo"></div>
+  </div>
+</div>
+
+{%include 'include/footer.html'%}
+
+<script>
+// ── CAR DATA WITH MULTIPLE ANGLES & COLORS ──────────────────
+const cars = [
+  {
+    id: 1,
+    brand: 'Ferrari',
+    name: 'SF90 Stradale',
+    desc: 'A hybrid masterpiece blending V8 power with electric torque for breathtaking performance.',
+    category: 'sports',
+    badge: 'Hot',
+    badgeType: 'hot',
+    price: '₹5.15 Cr',
+    hp: '1000 hp',
+    speed: '211 mph',
+    accel: '2.5s',
+    weight: '1,570 kg',
+    thumbnail: "{%static 'asstes/Ferrarif1.jpg' %}",
+    colors: [
+      {
+        name: 'Rosso Corsa',
+        hex: '#ff2020',
+        images: [
+          "{%static 'asstes/ferr.jpg' %}",
+         "{%static 'asstes/ferr.jpg' %}",
+        "{%static 'asstes/ferr.jpg' %}"
+        ]
+      },
+      {
+        name: 'Giallo Modena',
+        hex: '#ffd700',
+        images: [
+          "{%static 'asstes/Ferrari111.jpg' %}",
+          "{%static 'asstes/Ferrari111.jpg' %}",
+          "{%static 'asstes/Ferrari111.jpg' %}"
+        ]
+      },
+      {
+        name: 'Bianco Avus',
+        hex: '#ffffff',
+        images: [
+          "{%static 'asstes/BiancoAvus1.webp' %}",
+          "{%static 'asstes/BiancoAvus1.webp' %}",
+          "{%static 'asstes/BiancoAvus1.webp' %}"
+        ]
+      },
+      {
+        name: 'Nero',
+        hex: '#222222',
+        images: [
+          "{%static 'asstes/feeblack.jpg' %}",
+          "{%static 'asstes/feeblack.jpg' %}",
+          "{%static 'asstes/feeblack.jpg' %}"
+        ]
+      }
+    ]
+  },
+  {
+    id: 2,
+    brand: 'Tesla',
+    name: 'Model S Plaid',
+    desc: 'The quickest production car ever made. Tri-motor AWD with unmatched electric performance.',
+    category: 'electric',
+    badge: 'New',
+    badgeType: 'new',
+    price: '₹89.5 Lakh',
+    hp: '1,020 hp',
+    speed: '200 mph',
+    accel: '1.99s',
+    weight: '2,162 kg',
+    thumbnail:"{%static 'asstes/tellopen.jpg' %}" ,
+    colors: [
+      {
+        name: 'Pearl White',
+        hex: '#ffffff',
+        images: [
+          "{%static 'asstes/tell1.jpg' %}",
+          "{%static 'asstes/tell1.jpg' %}",
+          "{%static 'asstes/tell1.jpg' %}"
+        ]
+      },
+      {
+        name: 'Red Multi-Coat',
+        hex: '#cc0000',
+        images: [
+           "{%static 'asstes/tell2.jpg' %}",
+            "{%static 'asstes/tell2.jpg' %}",
+             "{%static 'asstes/tell2.jpg' %}"
+        ]
+      },
+      {
+        name: 'Solid Black',
+        hex: '#1a1a1a',
+        images: [
+           "{%static 'asstes/tell3.jpg' %}",
+            "{%static 'asstes/tell3.jpg' %}",
+             "{%static 'asstes/tell3.jpg' %}"
+        ]
+      },
+      {
+        name: 'Deep Blue',
+        hex: '#4a90d9',
+        images: [
+          "{%static 'asstes/tell4.jpg' %}",
+           "{%static 'asstes/tell4.jpg' %}",
+            "{%static 'asstes/tell4.jpg' %}"
+        ]
+      }
+    ]
+  },
+  {
+    id: 3,
+    brand: 'Lamborghini',
+    name: 'Huracán EVO',
+    desc: 'Raw Italian aggression wrapped in aerodynamic perfection. V10 naturally aspirated fury.',
+    category: 'sports',
+    badge: '',
+    badgeType: '',
+    price: '₹2.37 Cr',
+    hp: '640 hp',
+    speed: '202 mph',
+    accel: '2.9s',
+    weight: '1,422 kg',
+    thumbnail: "{%static 'asstes/Lamborghiniopen.jpg' %}" ,
+    colors: [
+      {
+        name: 'Nero Noctis',
+        hex: '#000000',
+        images: [
+          "{%static 'asstes/Lamborghini111.jpg' %}",
+          "{%static 'asstes/Lamborghini111.jpg' %}",
+          "{%static 'asstes/Lamborghini111.jpg' %}"
+        ]
+      },
+      {
+        name: 'Arancio Borealis',
+        hex: '#ff6600',
+        images: [
+          "{%static 'asstes/Lamborghini12.jpg' %}",
+          "{%static 'asstes/Lamborghini12.jpg' %}",
+          "{%static 'asstes/Lamborghini12.jpg' %}"
+      ]   
+      },
+      {
+        name: 'Verde Mantis',
+        hex: '#00ff88',
+        images: [
+         "{%static 'asstes/Lamborghini14.jpg' %}",
+         "{%static 'asstes/Lamborghini14.jpg' %}",
+         "{%static 'asstes/Lamborghini14.jpg' %}"
+        ]
+      },
+      {
+        name: 'Giallo Inti',
+        hex: '#ffd700',
+        images: ["{%static 'asstes/Lamborghini13.jpg' %}",
+        "{%static 'asstes/Lamborghini13.jpg' %}",
+        "{%static 'asstes/Lamborghini13.jpg' %}"
+        ]
+      }
+    ]
+  },
+  {
+    id: 4,
+    brand: 'Rolls-Royce',
+    name: 'Phantom VIII',
+    desc: 'The pinnacle of automotive luxury. Hand-crafted perfection with a twin-turbo V12.',
+    category: 'luxury',
+    badge: 'hot',
+    badgeType: 'hot',
+    price: '₹3.75 Cr',
+    hp: '563 hp',
+    speed: '155 mph',
+    accel: '5.1s',
+    weight: '2,560 kg',
+    thumbnail: "{%static 'asstes/RollsRoyce112.jpg' %}",
+    colors: [
+      {
+        name: 'Diamond Black',
+        hex: '#1a1a1a',
+        images: [
+          "{%static 'asstes/RollsRoyce11.jpg' %}",
+          "{%static 'asstes/RollsRoyce11.jpg' %}",
+          "{%static 'asstes/RollsRoyce11.jpg' %}"
+        ]
+      },
+      {
+        name: 'Arctic White',
+        hex: '#ffffff',
+        images: [
+         "{%static 'asstes/RollsRoyce12.jpg' %}",
+         "{%static 'asstes/RollsRoyce12.jpg' %}",
+         "{%static 'asstes/RollsRoyce12.jpg' %}"
+        ]
+      },
+      {
+        name: 'Silver Spectre',
+        hex: '#c0c0c0',
+        images: [
+         "{%static 'asstes/RollsRoyce13.jpg' %}",
+         "{%static 'asstes/RollsRoyce13.jpg' %}",
+         "{%static 'asstes/RollsRoyce13.jpg' %}"
+        ]
+      },
+      {
+        name: 'Midnight Sapphire',
+        hex: '#002147',
+        images: [
+         "{%static 'asstes/RollsRoyce114.jpg' %}",
+         "{%static 'asstes/RollsRoyce114.jpg' %}",
+         "{%static 'asstes/RollsRoyce114.jpg' %}"
+        ]
+      }
+    ]
+  },
+  {
+    id: 5,
+    brand: 'BMW',
+    name: 'M4 Competition',
+    desc: 'Aggressive inline-six twin-turbo power in a perfectly balanced sports coupe.',
+    category: 'sports',
+    badge: 'New',
+    badgeType: 'new',
+    price: '₹69.5 Lakh',
+    hp: '503 hp',
+    speed: '180 mph',
+    accel: '3.4s',
+    weight: '1,730 kg',
+    thumbnail: "{%static 'asstes/bmwf1.jpg' %}",
+    colors: [
+      {
+        name: 'Portimao Blue',
+        hex: '#1c3a6b',
+        images: [ 
+        "{%static 'asstes/bmw11.jpg' %}",
+         "{%static 'asstes/bmw11.jpg' %}",
+         "{%static 'asstes/bmw11.jpg' %}"
+        ]
+      },
+      {
+        name: 'Alpine White',
+        hex: '#ffffff',
+        images: [
+           "{%static 'asstes/bmw12.jpg' %}",
+         "{%static 'asstes/bmw12.jpg' %}",
+         "{%static 'asstes/bmw12.jpg' %}"
+      ]
+      },
+      {
+        name: 'Toronto Red',
+        hex: '#cc0000',
+        images: [
+           "{%static 'asstes/bmw13.jpg' %}",
+         "{%static 'asstes/bmw13.jpg' %}",
+         "{%static 'asstes/bmw13.jpg' %}"
+        ]
+      },
+      {
+        name: 'Black Sapphire',
+        hex: '#222222',
+        images: [
+           "{%static 'asstes/bmw14.jpg' %}",
+         "{%static 'asstes/bmw14.jpg' %}",
+         "{%static 'asstes/bmw14.jpg' %}"
+        ]
+      }
+    ]
+  },
+   {
+    id: 6,
+    brand: 'jaguar',
+    name: 'F-Pace',
+    desc: 'A hybrid masterpiece blending V6 power with electric torque for breathtaking performance.',
+    category: 'luxury',
+    badge: 'Hot',
+    badgeType: 'hot',
+    price: '₹1.00 Cr',
+    hp: '1000 hp',
+    speed: '250 mph',
+    accel: '2.5s',
+    weight: '1,570 kg',
+    thumbnail: "{%static 'asstes/jack1.png' %}",
+    colors: [
+      {
+        name: 'Rosso Corsa',
+        hex: '#ff2020',
+        images: [
+          "{%static 'asstes/jak4.jpg' %}",
+         "{%static 'asstes/jak4.jpg' %}",
+        "{%static 'asstes/jak4.jpg' %}"
+        ]
+      },
+      {
+        name: 'Giallo Modena',
+        hex: '#ffd700',
+        images: [
+          "{%static 'asstes/jak2.jpg' %}",
+          "{%static 'asstes/jak2.jpg' %}",
+          "{%static 'asstes/jak2.jpg' %}"
+        ]
+      },
+      {
+        name: 'Bianco Avus',
+        hex: '#ffffff',
+        images: [
+          "{%static 'asstes/jak11.jpg' %}",
+          "{%static 'asstes/jak11.jpg' %}",
+          "{%static 'asstes/jak11.jpg' %}"
+        ]
+      },
+      {
+        name: 'Nero',
+        hex: '#222222',
+        images: [
+          "{%static 'asstes/jac1.jpg' %}",
+          "{%static 'asstes/jac1.jpg' %}",
+          "{%static 'asstes/jac1.jpg' %}"
+        ]
+      }
+    ]
+  },
+   {
+    id: 7,
+    brand: 'lexus',
+    name: 'Lexus-LX',
+    desc: 'A hybrid masterpiece blending V7 power with electric torque for breathtaking performance.',
+    category: 'suv',
+    badge: 'Hot',
+    badgeType: 'hot',
+    price: '₹2.15 Cr',
+    hp: '1000 hp',
+    speed: '300 mph',
+    accel: '2.5s',
+    weight: '1,570 kg',
+    thumbnail: "{%static 'asstes/lexusf1.jpg' %}",
+    colors: [
+      {
+        name: 'Rosso Corsa',
+        hex: '#ff2020',
+        images: [
+          "{%static 'asstes/lexus1.jpg' %}",
+         "{%static 'asstes/lexus1.jpg' %}",
+        "{%static 'asstes/lexus1.jpg' %}"
+        ]
+      },
+      {
+        name: 'Giallo Modena',
+        hex: '#ffd700',
+        images: [
+          "{%static 'asstes/lexus2.jpg' %}",
+          "{%static 'asstes/lexus2.jpg' %}",
+          "{%static 'asstes/lexus2.jpg' %}"
+        ]
+      },
+      {
+        name: 'Bianco Avus',
+        hex: '#ffffff',
+        images: [
+          "{%static 'asstes/lexus3.jpg' %}",
+          "{%static 'asstes/lexus3.jpg' %}",
+          "{%static 'asstes/lexus3.jpg' %}"
+        ]
+      },
+      {
+        name: 'Nero',
+        hex: '#222222',
+        images: [
+          "{%static 'asstes/lexus4.jpg' %}",
+          "{%static 'asstes/lexus4.jpg' %}",
+          "{%static 'asstes/lexus4.jpg' %}"
+        ]
+      }
+    ]
+  },
+   {
+    id: 8,
+    brand: 'Range Rover',
+    name: 'Range Rover eco sport',
+    desc: 'A hybrid masterpiece blending v8 power with electric torque for breathtaking performance.',
+    category: 'luxury',
+    badge: 'Hot',
+    badgeType: 'hot',
+    price: '₹5.15 Cr',
+    hp: '1000 hp',
+    speed: '300 mph',
+    accel: '2.5s',
+    weight: '1,570 kg',
+    thumbnail: "{%static 'asstes/RangeRoverf1.jpg' %}",
+    colors: [
+      {
+        name: 'Rosso Corsa',
+        hex: '#ff2020',
+        images: [
+          "{%static 'asstes/RangeRover11.jpg' %}",
+         "{%static 'asstes/RangeRover11.jpg' %}",
+        "{%static 'asstes/RangeRover11.jpg' %}"
+        ]
+      },
+      {
+        name: 'Giallo Modena',
+        hex: '#ffd700',
+        images: [
+          "{%static 'asstes/RangeRover2.jpg' %}",
+          "{%static 'asstes/RangeRover2.jpg' %}",
+          "{%static 'asstes/RangeRover2.jpg' %}"
+        ]
+      },
+      {
+        name: 'Bianco Avus',
+        hex: '#ffffff',
+        images: [
+          "{%static 'asstes/RangeRover1.png' %}",
+          "{%static 'asstes/RangeRover1.png' %}",
+          "{%static 'asstes/RangeRover1.png' %}"
+        ]
+      },
+      {
+        name: 'Nero',
+        hex: '#222222',
+        images: [
+          "{%static 'asstes/RangeRover3.jpg' %}",
+          "{%static 'asstes/RangeRover3.jpg' %}",
+          "{%static 'asstes/RangeRover3.jpg' %}"
+        ]
+      }
+    ]
+  },
+   {
+    id: 9,
+    brand: 'Volvo',
+    name: ' XC60',
+    desc: 'A hybrid masterpiece blending V8 power with electric torque for breathtaking performance.',
+    category: 'suv',
+    badge: 'New',
+    badgeType: 'new',
+    price: '₹4.00 Cr',
+    hp: '1000 hp',
+    speed: '200 mph',
+    accel: '3.5s',
+    weight: '1,570 kg',
+    thumbnail: "{%static 'asstes/Volvof1.jpg' %}",
+    colors: [
+      {
+        name: 'Rosso Corsa',
+        hex: '#ff2020',
+        images: [
+          "{%static 'asstes/Volvo1.jpg' %}",
+         "{%static 'asstes/Volvo1.jpg' %}",
+        "{%static 'asstes/Volvo1.jpg' %}"
+        ]
+      },
+      {
+        name: 'Giallo Modena',
+        hex: '#ffd700',
+        images: [
+          "{%static 'asstes/Volvo2.jpg' %}",
+          "{%static 'asstes/Volvo2.jpg' %}",
+          "{%static 'asstes/Volvo2.jpg' %}"
+        ]
+      },
+      {
+        name: 'Bianco Avus',
+        hex: '#ffffff',
+        images: [
+          "{%static 'asstes/Volvo3.jpg' %}",
+          "{%static 'asstes/Volvo3.jpg' %}",
+          "{%static 'asstes/Volvo3.jpg' %}"
+        ]
+      },
+      {
+        name: 'Nero',
+        hex: '#222222',
+        images: [
+          "{%static 'asstes/Volvo4.jpg' %}",
+          "{%static 'asstes/Volvo4.jpg' %}",
+          "{%static 'asstes/Volvo4.jpg' %}"
+        ]
+      }
+    ]
+  },
+  {
+    id: 10,
+    brand: 'Ford',
+    name: 'Thunderbird ·',
+    desc: 'A hybrid masterpiece blending V8 power with electric torque for breathtaking performance.',
+    category: 'suv',
+    badge: 'New',
+    badgeType: 'new',
+    price: '₹4.00 Cr',
+    hp: '1000 hp',
+    speed: '200 mph',
+    accel: '3.5s',
+    weight: '1,570 kg',
+    thumbnail: "{%static 'asstes/Fordf2.jpg' %}",
+    colors: [
+      {
+        name: 'Rosso Corsa',
+        hex: '#ff2020',
+        images: [
+          "{%static 'asstes/Ford1.jpg' %}",
+         "{%static 'asstes/Ford1.jpg' %}",
+        "{%static 'asstes/Ford1.jpg' %}"
+        ]
+      },
+      {
+        name: 'Giallo Modena',
+        hex: '#ffd700',
+        images: [
+          "{%static 'asstes/Ford2.jpg' %}",
+          "{%static 'asstes/Ford2.jpg' %}",
+          "{%static 'asstes/Ford2.jpg' %}"
+        ]
+      },
+      {
+        name: 'Bianco Avus',
+        hex: '#ffffff',
+        images: [
+          "{%static 'asstes/Ford3.jpg' %}",
+          "{%static 'asstes/Ford3.jpg' %}",
+          "{%static 'asstes/Ford3.jpg' %}"
+        ]
+      },
+      {
+        name: 'black',
+        hex: '#222222',
+        images: [
+          "{%static 'asstes/Ford4.jpg' %}",
+          "{%static 'asstes/Ford4.jpg' %}",
+          "{%static 'asstes/Ford4.jpg' %}"
+        ]
+      }
+    ]
+  },
+   {
+    id: 11,
+    brand: 'MERCEDES-BENZ',
+    name: 'Mercedes-Maybach S-Class.',
+    desc: 'A hybrid masterpiece blending V8 power with electric torque for breathtaking performance.',
+    category: 'luxury',
+    badge: 'New',
+    badgeType: 'new',
+    price: '₹4.00 Cr',
+    hp: '1000 hp',
+    speed: '200 mph',
+    accel: '3.5s',
+    weight: '1,570 kg',
+    thumbnail: "{%static 'asstes/MERCEDESBENZf1.jpg' %}",
+    colors: [
+      {
+        name: 'Rosso Corsa',
+        hex: '#ff2020',
+        images: [
+          "{%static 'asstes/MERCEDESBENZ1.jpg' %}",
+         "{%static 'asstes/MERCEDESBENZ1.jpg' %}",
+        "{%static 'asstes/MERCEDESBENZ1.jpg' %}"
+        ]
+      },
+      {
+        name: 'Giallo Modena',
+        hex: '#ffd700',
+        images: [
+          "{%static 'asstes/MERCEDESBENZ2.jpg' %}",
+          "{%static 'asstes/MERCEDESBENZ2.jpg' %}",
+          "{%static 'asstes/MERCEDESBENZ2.jpg' %}"
+        ]
+      },
+      {
+        name: 'Bianco Avus',
+        hex: '#ffffff',
+        images: [
+          "{%static 'asstes/MERCEDESBENZ3.jpg' %}",
+          "{%static 'asstes/MERCEDESBENZ3.jpg' %}",
+          "{%static 'asstes/MERCEDESBENZ3.jpg' %}"
+        ]
+      },
+      {
+        name: 'Nero',
+        hex: '#222222',
+        images: [
+          "{%static 'asstes/MERCEDESBENZ4.jpg' %}",
+          "{%static 'asstes/MERCEDESBENZ4.jpg' %}",
+          "{%static 'asstes/MERCEDESBENZ4.jpg' %}"
+        ]
+      }
+    ]
+  },
+  {
+    id: 12,
+    brand: 'Audi',
+    name: 'Audi A3',
+    desc: 'A hybrid masterpiece blending V8 power with electric torque for breathtaking performance.',
+    category: 'luxury',
+    badge: 'New',
+    badgeType: 'new',
+    price: '₹4.00 Cr',
+    hp: '1000 hp',
+    speed: '200 mph',
+    accel: '3.5s',
+    weight: '1,570 kg',
+    thumbnail: "{%static 'asstes/Audif1.jpg' %}",
+    colors: [
+      {
+        name: 'Rosso Corsa',
+        hex: '#ff2020',
+        images: [
+          "{%static 'asstes/Audi1.jpg' %}",
+         "{%static 'asstes/Audi1.jpg' %}",
+        "{%static 'asstes/Audi1.jpg' %}"
+        ]
+      },
+      {
+        name: 'Giallo Modena',
+        hex: '#ffd700',
+        images: [
+          "{%static 'asstes/Audi2.jpg' %}",
+          "{%static 'asstes/Audi2.jpg' %}",
+          "{%static 'asstes/Audi2.jpg' %}"
+        ]
+      },
+      {
+        name: 'Bianco Avus',
+        hex: '#ffffff',
+        images: [
+          "{%static 'asstes/Audi3.jpg' %}",
+          "{%static 'asstes/Audi3.jpg' %}",
+          "{%static 'asstes/Audi3.jpg' %}"
+        ]
+      },
+      {
+        name: 'Nero',
+        hex: '#222222',
+        images: [
+          "{%static 'asstes/Audi4.jpg' %}",
+          "{%static 'asstes/Audi4.jpg' %}",
+          "{%static 'asstes/Audi4.jpg' %}"
+        ]
+      }
+    ]
+  },
+  {
+    id: 13,
+    brand: 'Porsche',
+    name: 'GT3',
+    desc: 'A hybrid masterpiece blending V8 power with electric torque for breathtaking performance.',
+    category: 'luxury',
+    badge: 'New',
+    badgeType: 'new',
+    price: '₹4.00 Cr',
+    hp: '1000 hp',
+    speed: '200 mph',
+    accel: '3.5s',
+    weight: '1,570 kg',
+    thumbnail: "{%static 'asstes/porschef1.jpg' %}",
+    colors: [
+      {
+        name: 'Rosso Corsa',
+        hex: '#ff2020',
+        images: [
+          "{%static 'asstes/porsche1.jpg' %}",
+         "{%static 'asstes/porsche1.jpg' %}",
+        "{%static 'asstes/porsche1.jpg' %}"
+        ]
+      },
+      {
+        name: 'Giallo Modena',
+        hex: '#ffd700',
+        images: [
+          "{%static 'asstes/porsche2.jpg' %}",
+          "{%static 'asstes/porsche2.jpg' %}",
+          "{%static 'asstes/porsche2.jpg' %}"
+        ]
+      },
+      {
+        name: 'Bianco Avus',
+        hex: '#ffffff',
+        images: [
+          "{%static 'asstes/porsche3.jpg' %}",
+          "{%static 'asstes/porsche3.jpg' %}",
+          "{%static 'asstes/porsche3.jpg' %}"
+        ]
+      },
+      {
+        name: 'Nero',
+        hex: '#222222',
+        images: [
+          "{%static 'asstes/porsche4.jpg' %}",
+          "{%static 'asstes/porsche4.jpg' %}",
+          "{%static 'asstes/porsche4.jpg' %}"
+        ]
+      }
+    ]
+  },
+  {
+    id: 14,
+    brand: 'Aston Martin',
+    name: 'DB12',
+    desc: 'A hybrid masterpiece blending V8 power with electric torque for breathtaking performance.',
+    category: 'sports',
+    badge: 'New',
+    badgeType: 'new',
+    price: '₹4.00 Cr',
+    hp: '1000 hp',
+    speed: '200 mph',
+    accel: '3.5s',
+    weight: '1,570 kg',
+    thumbnail: "{%static 'asstes/Astonf1.jpg' %}",
+    colors: [
+      {
+        name: 'Rosso Corsa',
+        hex: '#ff2020',
+        images: [
+          "{%static 'asstes/Aston11.jpg' %}",
+         "{%static 'asstes/Aston11.jpg' %}",
+        "{%static 'asstes/Aston11.jpg' %}"
+        ]
+      },
+      {
+        name: 'Giallo Modena',
+        hex: '#ffd700',
+        images: [
+          "{%static 'asstes/Aston2.jpg' %}",
+          "{%static 'asstes/Aston2.jpg' %}",
+          "{%static 'asstes/Aston2.jpg' %}"
+        ]
+      },
+      {
+        name: 'Bianco Avus',
+        hex: '#ffffff',
+        images: [
+          "{%static 'asstes/Aston3.jpg' %}",
+          "{%static 'asstes/Aston3.jpg' %}",
+          "{%static 'asstes/Aston3.jpg' %}"
+        ]
+      },
+      {
+        name: 'Nero',
+        hex: '#222222',
+        images: [
+          "{%static 'asstes/Aston1.jpg' %}",
+          "{%static 'asstes/Aston1.jpg' %}",
+          "{%static 'asstes/Aston1.jpg' %}"
+        ]
+      }
+    ]
+  },
+];
+
+// ── BUILD CARDS ────────────────────────────────────────────
+const collection = document.getElementById('collection');
+
+function buildCards(filter = 'all') {
+  collection.innerHTML = '';
+  const filtered = filter === 'all' ? cars : cars.filter(c => c.category.toLowerCase() === filter);
+
+  filtered.forEach((car, idx) => {
+    const div = document.createElement('div');
+    div.className = 'car-card';
+    div.setAttribute('data-id', car.id);
+    div.innerHTML = `
+      <div class="card-image">
+        ${car.badge ? `<div class="card-badge ${car.badgeType}">${car.badge}</div>` : ''}
+        <img src="${car.thumbnail}" alt="${car.name}" loading="lazy">
+      </div>
+      <div class="card-body">
+        <div class="card-brand">${car.brand}</div>
+        <div class="card-name">${car.name}</div>
+        <div class="card-desc">${car.desc}</div>
+        <div class="card-specs">
+          <div class="spec"><span class="spec-label">Power</span><span class="spec-value">${car.hp}</span></div>
+          <div class="spec"><span class="spec-label">Speed</span><span class="spec-value">${car.speed}</span></div>
+          <div class="spec"><span class="spec-label">0-60</span><span class="spec-value">${car.accel}</span></div>
+        </div>
+        <div class="card-footer">
+          <div class="card-price">${car.price}</div>
+          <button class="btn-detail" data-id="${car.id}">View Details</button>
+        </div>
+      </div>
+    `;
+    collection.appendChild(div);
+  });
+
+  document.querySelectorAll('.btn-detail').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      openModal(parseInt(btn.dataset.id));
+    });
+  });
+
+  document.querySelectorAll('.car-card').forEach(card => {
+    card.addEventListener('click', () => openModal(parseInt(card.dataset.id)));
+  });
+}
+
+// ── MODAL STATE ─────────────────────────────────────────────
+let currentCar = null;
+let currentColorIndex = 0;
+
+// ── MODAL ───────────────────────────────────────────────────
+const overlay = document.getElementById('modalOverlay');
+const modalClose = document.getElementById('modalClose');
+const modalInfo = document.getElementById('modalInfo');
+const viewerFullsizeImg = document.getElementById('viewerFullsizeImg');
+
+function openModal(id) {
+  currentCar = cars.find(c => c.id === id);
+  currentColorIndex = 0;
+  overlay.classList.add('open');
+
+  updateViewerImage();
+
+  modalInfo.innerHTML = `
+    <div>
+      <div class="modal-brand">${currentCar.brand}</div>
+      <div class="modal-name">${currentCar.name}</div>
+      <div class="modal-desc">${currentCar.desc}</div>
+      <div class="modal-specs-grid">
+        <div class="modal-spec-item"><div class="modal-spec-label">Horsepower</div><div class="modal-spec-value">${currentCar.hp}</div></div>
+        <div class="modal-spec-item"><div class="modal-spec-label">Top Speed</div><div class="modal-spec-value">${currentCar.speed}</div></div>
+        <div class="modal-spec-item"><div class="modal-spec-label">0–60 mph</div><div class="modal-spec-value">${currentCar.accel}</div></div>
+        <div class="modal-spec-item"><div class="modal-spec-label">Weight</div><div class="modal-spec-value">${currentCar.weight}</div></div>
+      </div>
+
+      <div class="color-section">
+        <div class="color-section-title">Select Color</div>
+        <div class="color-row" id="colorRow">
+          ${currentCar.colors.map((c, i) => `
+            <div class="color-dot ${i === 0 ? 'selected' : ''}"
+                 data-name="${c.name}"
+                 style="background: ${c.hex}"
+                 onclick="selectColor(${i})">
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+    <div class="modal-price-row">
+      <div class="modal-price">${currentCar.price}</div>
+      <button class="btn-buy" onclick="goBuyNow()">Buy Now</button>
+    </div>
+  `;
+}
+
+function goBuyNow() {
+  if (!currentCar) return;
+  const color = currentCar.colors[currentColorIndex];
+  const params = new URLSearchParams({
+    brand: currentCar.brand,
+    name: currentCar.name,
+    desc: currentCar.desc,
+    price: currentCar.price,
+    hp: currentCar.hp,
+    speed: currentCar.speed,
+    accel: currentCar.accel,
+    weight: currentCar.weight,
+    color: color.name,
+    hex: color.hex,
+    img: color.images[0]
+  });
+  window.location.href = "{% url 'bynow' %}?" + params.toString();
+}
+
+function updateViewerImage() {
+  if (!currentCar) return;
+  const color = currentCar.colors[currentColorIndex];
+  const imgUrl = color.images[0];
+  viewerFullsizeImg.src = imgUrl;
+  viewerFullsizeImg.alt = `${currentCar.name} - ${color.name}`;
+}
+
+function selectColor(index) {
+  if (index === currentColorIndex) return;
+  
+  currentColorIndex = index;
+  updateViewerImage();
+
+  // Update color selection
+  document.querySelectorAll('.color-dot').forEach((dot, i) => {
+    dot.classList.toggle('selected', i === index);
+  });
+}
+
+// ── CLOSE MODAL ─────────────────────────────────────────────
+function closeModal() {
+  overlay.classList.remove('open');
+  currentCar = null;
+  viewerFullsizeImg.src = '';
+}
+
+modalClose.addEventListener('click', closeModal);
+overlay.addEventListener('click', e => {
+  if (e.target === overlay) closeModal();
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (!currentCar) return;
+  if (e.key === 'Escape') {
+    closeModal();
+  }
+});
+
+// ── TAB SWITCHING ───────────────────────────────────────────
+function switchTab(mode) {
+  const customerSection = document.getElementById('customerSection');
+  const clientSection = document.getElementById('clientSection');
+
+  if (mode === 'customer') {
+    customerSection.classList.remove('hide');
+    clientSection.classList.remove('active');
+  } else {
+    customerSection.classList.add('hide');
+    clientSection.classList.add('active');
+  }
+}
+
+// ── FILTERS ───────────────────────────────────────────────
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    buildCards(btn.dataset.filter);
+  });
+});
+
+// ── INIT ────────────────────────────────────────────────────
+buildCards();
+
+</script>
+
+</body>
+</html>

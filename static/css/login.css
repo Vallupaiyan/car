@@ -1,0 +1,137 @@
+
+    /* ===== BODY ===== */
+body{
+    margin:0;
+    padding:0;
+    font-family:'Poppins', sans-serif;
+    background: linear-gradient(135deg,#0f172a,#1e293b,#111827);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* ===== LOGIN CONTAINER ===== */
+.login-container{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* ===== LOGIN BOX ===== */
+.login-box{
+    width:400px;
+    padding:40px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    text-align:center;
+    color:white;
+}
+
+/* ===== TITLE ===== */
+.login-box h1{
+    margin-bottom:10px;
+    font-size:32px;
+    color:#fbbf24;
+}
+
+.login-box p{
+    color:#cbd5e1;
+    margin-bottom:25px;
+}
+
+/* ===== INPUTS ===== */
+.login-box input[type="email"],
+.login-box input[type="password"]{
+    width:100%;
+    padding:14px;
+    margin:10px 0;
+    border:none;
+    outline:none;
+    border-radius:10px;
+    background:rgba(255,255,255,0.1);
+    color:white;
+    font-size:15px;
+}
+
+.login-box input::placeholder{
+    color:#94a3b8;
+}
+
+/* ===== OPTIONS ===== */
+.options{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:15px 0;
+    font-size:14px;
+}
+
+.options label{
+    color:#e2e8f0;
+}
+
+.options a{
+    color:#fbbf24;
+    text-decoration:none;
+}
+
+.options a:hover{
+    text-decoration:underline;
+}
+
+/* ===== BUTTON ===== */
+.login-box button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#fbbf24;
+    color:#111827;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.login-box button:hover{
+    background:#f59e0b;
+    transform:translateY(-2px);
+}
+
+/* ===== SIGNUP ===== */
+.signup{
+    margin-top:20px;
+    font-size:14px;
+}
+
+.signup a{
+    color:#fbbf24;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.signup a:hover{
+    text-decoration:underline;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:480px){
+    .login-box{
+        width:90%;
+        padding:30px 20px;
+    }
+
+    .login-box h1{
+        font-size:26px;
+    }
+
+    .options{
+        flex-direction:column;
+        gap:10px;
+    }
+}

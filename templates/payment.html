@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed</title>
+    <style>
+        body { background:#0a0a0f; color:#fff; font-family:sans-serif; display:flex;
+               align-items:center; justify-content:center; min-height:100vh; margin:0; }
+        .box { text-align:center; max-width:480px; padding:40px; border:1px solid #2a2a42;
+               border-radius:20px; background:#0f0f1a; }
+        h1 { color:#d4af37; } a { color:#d4af37; }
+        .row { color:#b0b0c0; margin:6px 0; }
+    </style>
+</head>
+<body>
+<div class="box">
+{% if order %}
+    <h1>Order Confirmed 🎉</h1>
+    <div class="row">{{ order.car_brand }} {{ order.car_name }} ({{ order.car_color }})</div>
+    <div class="row">Booking paid: ₹{{ order.amount_inr }}</div>
+    <div class="row">Payment ID: {{ order.razorpay_payment_id }}</div>
+    <p class="row">Thank you, {{ order.name }}. Our team will call you on {{ order.phone }}.</p>
+{% else %}
+    <h1>Payment not found</h1>
+    <p class="row">We could not confirm this payment. If money was deducted, please contact us.</p>
+{% endif %}
+    <p><a href="{% url 'collection' %}">Back to collection</a></p>
+</div>
+</body>
+</html>

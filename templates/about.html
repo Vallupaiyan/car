@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | DEALARO - Premium Luxury Cars</title>
+    <meta name="description" content="Learn about Dealaro - your trusted destination for premium and luxury vehicles since 2011.">
+   <link rel="stylesheet" href="{% static 'css/about.css' %}">
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    {%include 'include/navbar.html'%}
+
+    <!-- Page Header -->
+    <section style="padding: 150px 8% 80px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); text-align: center;">
+        <div class="section-title" style="margin-bottom: 0;">
+            <h2 style="color: #fff; font-size: 52px;">About Us</h2>
+            <p style="color: #888; margin-top: 15px;">Our Story, Mission & Values</p>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="about-image animate-on-scroll">
+            <img src="{%static 'asstes/car2.jpg' %}" alt="Luxury Car">
+        </div>
+        <div class="about-content animate-on-scroll">
+            <span>ABOUT US</span>
+            <h2>Driving Excellence In Every Journey</h2>
+            <p>
+                Welcome to Dealaro, your trusted destination for premium and luxury
+                vehicles. Founded in 2011, we are passionate about delivering exceptional cars that
+                combine performance, comfort, and innovation.
+            </p>
+            <p>
+                Whether you're looking for a stylish sports car, a family SUV,
+                or a luxury sedan, our collection is carefully selected to meet
+                the highest standards of quality and reliability. Every vehicle in our showroom
+                undergoes a rigorous 150-point inspection.
+            </p>
+            <div class="about-features">
+                <div class="feature">
+                    <i class="fa-solid fa-check-circle"></i> Premium Vehicles
+                </div>
+                <div class="feature">
+                    <i class="fa-solid fa-check-circle"></i> Trusted Dealership
+                </div>
+                <div class="feature">
+                    <i class="fa-solid fa-check-circle"></i> Affordable Pricing
+                </div>
+                <div class="feature">
+                    <i class="fa-solid fa-check-circle"></i> Customer Satisfaction
+                </div>
+            </div>
+            <a href="{%url 'collection'%}" class="about-btn">
+                <i class="fa-solid fa-arrow-right"></i> Explore Cars
+            </a>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section style="width: 100%; padding: 100px 8%; background: linear-gradient(135deg, #dcdc41 0%, #f0ff6c 100%);">
+        <div class="section-title animate-on-scroll">
+            <h2>Why Choose DEALARO?</h2>
+            <p>What Makes Us Different</p>
+        </div>
+        <div class="services-container">
+            <div class="service-card animate-on-scroll">
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <h2>Certified Quality</h2>
+                <p>Every vehicle undergoes rigorous inspection and certification before reaching our showroom.</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                </div>
+                <h2>Best Price Guarantee</h2>
+                <p>We offer competitive pricing with transparent deals. No hidden fees, ever.</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h2>Warranty Included</h2>
+                <p>All vehicles come with comprehensive warranty coverage for your peace of mind.</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-rotate-left"></i>
+                </div>
+                <h2>Easy Returns</h2>
+                <p>Not satisfied? Our hassle-free return policy ensures your complete satisfaction.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team/Stats Section -->
+    <section style="width: 100%; padding: 100px 8%; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); text-align: center;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1000px; margin: 0 auto;">
+            <div class="animate-on-scroll" style="padding: 40px;">
+                <i class="fa-solid fa-users" style="font-size: 40px; color: var(--primary); margin-bottom: 20px;"></i>
+                <h3 style="font-size: 42px; color: #fff; font-weight: 800;">15K+</h3>
+                <p style="color: #888; margin-top: 10px;">Happy Customers</p>
+            </div>
+            <div class="animate-on-scroll" style="padding: 40px;">
+                <i class="fa-solid fa-car" style="font-size: 40px; color: var(--primary); margin-bottom: 20px;"></i>
+                <h3 style="font-size: 42px; color: #fff; font-weight: 800;">500+</h3>
+                <p style="color: #888; margin-top: 10px;">Cars Sold</p>
+            </div>
+            <div class="animate-on-scroll" style="padding: 40px;">
+                <i class="fa-solid fa-trophy" style="font-size: 40px; color: var(--primary); margin-bottom: 20px;"></i>
+                <h3 style="font-size: 42px; color: #fff; font-weight: 800;">25+</h3>
+                <p style="color: #888; margin-top: 10px;">Awards Won</p>
+            </div>
+            <div class="animate-on-scroll" style="padding: 40px;">
+                <i class="fa-solid fa-star" style="font-size: 40px; color: var(--primary); margin-bottom: 20px;"></i>
+                <h3 style="font-size: 42px; color: #fff; font-weight: 800;">4.9</h3>
+                <p style="color: #888; margin-top: 10px;">Average Rating</p>
+            </div>
+        </div>
+    </section>
+{%include 'include/footer.html'%}
+
+<script>
+
+// Scroll Animation
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.animate-on-scroll').forEach(el => {
+    observer.observe(el);
+});
+</script>
+</body>
+</html>

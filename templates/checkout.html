@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Checkout</title>
+    <link rel="stylesheet" href="{% static 'css/bynow.css' %}">
+    <style>
+        .field { display:block; margin:8px 0; padding:12px; width:100%; border-radius:8px;
+                 border:1px solid #444; background:#111; color:#fff; font-family:inherit; }
+        .note  { color:#aaa; font-size:.85rem; margin:10px 0; line-height:1.5; }
+        #payError { color:#ff6b5b; margin-top:10px; }
+    </style>
+</head>
+<body>
+{% csrf_token %}
+<div class="car-page">
+    <div class="car-image"><img id="carImg" src="" alt="Car"></div>
+    <div class="car-details">
+        <div class="brand" id="carBrand"></div>
+        <h1 id="carName"></h1>
+        <p class="description">Color: <span id="carColorName"></span></p>
+        <div class="price" id="carPrice"></div>
+        <p class="note">
+            Booking amount to pay online now:
+            <strong>₹{{ booking_amount }}</strong>. Balance is paid at delivery.
+        </p>
+
+        <form id="orderForm">
+            <input class="field" id="cName" required placeholder="Full name">
+            <input class="field" id="cPhone" required placeholder="Phone" pattern="[0-9+ ]{10,15}">
+            <textarea class="field" id="cAddress" required placeholder="Delivery address"></textarea>
+            <button class="buy-now" id="payBtn" type="submit">PAY ₹{{ booking_amount }} &amp; PLACE ORDER</button>
+        </form>
+        <div id="payError"></div>
+    </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+const q = new URLSearchParams(location.search);
+const set = (id, v) => document.getElementById(id).textContent = v || '';
+set('carBrand', (q.get('brand') || '').toUpperCase());
+set('carName', (q.get('name') || '').toUpperCase());
+set('carColorName', q.get('color'));
+set('carPrice', q.get('price'));
+document.getElementById('carImg').src = q.get('img') || '';
+
+const csrf = document.querySelector('[name=csrfmiddlewaretoken]').value;
+const errBox = document.getElementById('payError');
+const payBtn = document.getElementById('payBtn');
+
+async function post(url, body) {
+  const r = await fetch(url, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', 'X-CSRFToken': csrf},
+    body: JSON.stringify(body)
+  });
+  return { ok: r.ok, data: await r.json() };
+}
+
+document.getElementById('orderForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  errBox.textContent = '';
+  payBtn.disabled = true;
+
+  const res = await post("{% url 'create_order' %}", {
+    name: document.getElementById('cName').value,
+    phone: document.getElementById('cPhone').value,
+    address: document.getElementById('cAddress').value,
+    brand: q.get('brand'), car: q.get('name'),
+    color: q.get('color'), price: q.get('price')
+  });
+  if (!res.ok) {
+    errBox.textContent = res.data.error || 'Something went wrong';
+    payBtn.disabled = false;
+    return;
+  }
+  const o = res.data;
+
+  const rzp = new Razorpay({
+    key: o.key,
+    amount: o.amount,
+    currency: 'INR',
+    name: 'Prestige Motors',
+    description: (q.get('brand') || '') + ' ' + (q.get('name') || '') + ' - booking',
+    order_id: o.order_id,
+    prefill: { name: o.name, contact: o.phone },
+    theme: { color: '#d4af37' },
+    handler: async function (resp) {
+      const v = await post("{% url 'verify_payment' %}", resp);
+      if (v.ok && v.data.ok) {
+        window.location.href = "{% url 'payment_success' %}?order_id=" + o.order_id;
+      } else {
+        errBox.textContent = 'Payment could not be verified. Contact support with ID ' + resp.razorpay_payment_id;
+        payBtn.disabled = false;
+      }
+    },
+    modal: { ondismiss: () => { payBtn.disabled = false; } }
+  });
+  rzp.on('payment.failed', (r) => {
+    errBox.textContent = 'Payment failed: ' + r.error.description;
+    payBtn.disabled = false;
+  });
+  rzp.open();
+});
+</script>
+</body>
+</html>

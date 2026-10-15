@@ -1,0 +1,348 @@
+/* ===== NAVBAR BASE STYLE ===== */
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: #111;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo a {
+    text-decoration: none;
+}
+
+.logo h2 {
+    color: #f5c542;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+/* Flex Desktop Wrapper Container */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+    margin-left: 40px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    margin: 0 auto; /* Centers your page links nicely on desktop */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #f5c542;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-actions a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.login-btn {
+    background: #f5c542;
+    color: #111 !important;
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-size: 14px !important;
+    font-weight: 600;
+}
+
+.menu-toggle {
+    display: none; /* Hidden on desktop view screens */
+    color: #fff;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+
+/* ===== RESPONSIVE MOBILE NAVBAR (Breaks at 768px) ===== */
+@media (max-width: 768px) {
+    
+    .menu-toggle {
+        display: block;
+        z-index: 1001; /* Keeps the toggle button layered on top */
+    }
+
+    /* Turns the full menu wrapper into a neat vertical drawer */
+    .nav-menu {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 75px; 
+        left: 0;
+        width: 100%;
+        background: #111;
+        padding: 40px 20px;
+        gap: 35px;
+        text-align: center;
+        margin-left: 0;
+        border-top: 1px solid #222;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.5);
+    }
+
+    /* Activates via Javascript toggle classes */
+    .nav-menu.mobile-open {
+        display: flex;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 25px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-links a {
+        font-size: 18px;
+    }
+
+    .nav-actions {
+        justify-content: center;
+        width: 100%;
+        gap: 30px;
+        padding-top: 25px;
+        border-top: 1px solid #222; /* Creates clean spacing between links and action icons */
+    }
+}
+
+
+/* ===== FOOTER STYLING ===== */
+.footer {
+    width: 100%;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+    color: #fff;
+    padding: 100px 8% 40px;
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #ffc107, #e6a800, #ffc107);
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 50px;
+}
+
+.footer-box h2 {
+    font-size: 32px;
+    color: #ffc107;
+    margin-bottom: 20px;
+}
+
+.footer-box h3 {
+    color: #fff;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-box h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: #ffc107;
+}
+
+.footer-box p {
+    color: #aaa;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+.footer-box a {
+    display: block;
+    color: #aaa;
+    text-decoration: none;
+    margin: 10px 0;
+    transition: .3s;
+}
+
+.footer-box a:hover {
+    color: #ffc107;
+    padding-left: 5px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.footer-social a {
+    width: 45px;
+    height: 45px;
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    transition: .3s;
+}
+
+.footer-social a:hover {
+    background: #ffc107;
+    color: #111;
+    border-color: #ffc107;
+}
+
+.footer-newsletter {
+    margin-top: 20px;
+}
+
+.footer-newsletter input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+.footer-newsletter button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 30px;
+    background: #ffc107;
+    color: #111;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, .08);
+    margin-top: 50px;
+    padding-top: 20px;
+    color: #777;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 70px 5% 30px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+/* SEARCH CONTAINER */
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.search-btn:hover {
+    color: #f5c542;
+}
+
+
+/* SEARCH INPUT */
+
+.search-input {
+    width: 0;
+    opacity: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    margin-left: 5px;
+}
+
+
+/* Search click pannumbothu */
+
+.search-input.active {
+    width: 180px;
+    opacity: 1;
+    padding: 10px 15px;
+}
+
+
+/* WISHLIST */
+
+.wishlist-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.wishlist-btn:hover {
+    color: #f5c542;
+}
+
+
+/* Wishlist click pannumbothu */
+
+.wishlist-btn.liked {
+    color: red;
+}
+
+.wishlist-btn.liked i {
+    color: red;
+}
+
+
+/* LOGIN */
+
+.login-btn {
+    text-decoration: none;
+    cursor: pointer;
+}
+.nav-user {
+    color: #fff;
+    font-size: 14px;
+}
